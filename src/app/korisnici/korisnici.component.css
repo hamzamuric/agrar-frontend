@@ -1,0 +1,66 @@
+.search-inputs {
+    max-width: 780px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    background-color: aquamarine;
+    padding: 12px;
+    border-radius: 12px;
+    align-items: center;
+}
+
+.search-inputs input[type="text"] {
+    flex: 1;
+}
+
+.korisnici-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: row;
+    max-width: 800px;
+    margin: auto;
+    justify-content: space-evenly;
+}
+
+.korisnik {
+    background-color: aquamarine;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 200px;
+    border-radius: 12px;
+}
+
+.musko {
+    background-color: skyblue;
+}
+
+.zensko {
+    background-color: pink;
+}
+
+.korisnik * {
+    margin: 0;
+}
+
+.korisnik p {
+    font-size: 0.8rem;
+    font-weight: bolder;
+}
+
+.korisnik h6 {
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+.korisnik h3 {
+    font-weight: bold;
+}
+
+.korisnik span {
+    font-weight: normal;
+}

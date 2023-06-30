@@ -1,0 +1,17 @@
+<div class="search-inputs">
+    <input type="text" placeholder="Ime i prezime">
+    <input type="date" matInput>
+    <input type="checkbox" [value]="'musko'">Musko
+    <input type="checkbox" [value]="'zensko'">Zensko
+    <button mat-flat-button color="primary">Pretrazi</button>
+</div>
+<div class="korisnici-container">
+    <div *ngFor="let korisnik of korisnici" class="korisnik" [ngClass]="korisnik.pol">
+        <p>{{korisnik.korisnickoIme}}</p>
+        <h3>{{korisnik.ime}} <span>{{korisnik.prezime}}</span></h3>
+        <h6>{{korisnik.email}}</h6>
+        <h6>{{formatDate(korisnik.datumRodjenja)}}</h6>
+        <h6>{{korisnik.brojTelefona}}</h6>
+        <button mat-flat-button *ngIf="!korisnik.odobrenaRegistracija">Potvrdi</button>
+    </div>
+</div>

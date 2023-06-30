@@ -1,0 +1,17 @@
+<div class="dodavanje-pesticida">
+    <input type="text" placeholder="Ime pesticida">
+    <button mat-raised-button color="primary">Dodaj pesticid</button>
+</div>
+<div class="pesticidi-container">
+    <div *ngFor="let pesticid of pesticidi">
+        <h6>{{pesticid.naziv}}</h6>
+        <mat-chip-listbox aria-label="Sorta selection" multiple="true">
+            <mat-chip-option>Jabuka</mat-chip-option>
+            <mat-chip-option>Kruska</mat-chip-option>
+            <mat-chip-option selected>Sljiva</mat-chip-option>
+            <mat-chip-option>Tresnja</mat-chip-option>
+        </mat-chip-listbox>
+        <button mat-flat-button color="primary">Sacuvaj</button>
+        <span>X</span>
+    </div>
+</div>

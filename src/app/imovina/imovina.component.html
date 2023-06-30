@@ -1,0 +1,185 @@
+<div class="imovina-container">
+    <div class="table-container" [style.grid-area]="'parcela'">
+        <div class="action-buttons">
+            <button mat-raised-button color="primary" (click)="dodajParcelu()">Dodaj parcelu</button>
+            <div [style.width]="'150px'"></div>
+            <button mat-raised-button [disabled]="!selectedParcela" color="warn" (click)="izbrisiParcelu()">Izbrisi parcelu</button>
+        </div>
+        <table mat-table [dataSource]="parcele" class="mat-elevation-z8">
+            <ng-container matColumnDef="brojParcele">
+                <th mat-header-cell *matHeaderCellDef> Broj Parcele </th>
+                <td mat-cell *matCellDef="let parcela"> {{parcela.brojParcele}} </td>
+            </ng-container>
+            <ng-container matColumnDef="povrsina">
+                <th mat-header-cell *matHeaderCellDef> Povrsina </th>
+                <td mat-cell *matCellDef="let parcela"> {{parcela.povrsina}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr
+                mat-row
+                (click)="rowClick(row)"
+                *matRowDef="let row; columns: columnsToDisplay"
+            ></tr>
+        </table>
+    </div>
+
+    <div *ngIf="selectedParcela && selectedParcela.vocnjaci" class="table-container" [style.grid-area]="'vocnjak'">
+        <div class="action-buttons">
+            <button mat-raised-button [disabled]="!selectedParcela" color="primary" (click)="dodajVocnjak()">Dodaj vocnjak</button>
+            <button mat-raised-button [disabled]="!selectedVocnjak" (click)="izmeniVocnjak()">Izmeni vocnjak</button>
+            <button mat-raised-button [disabled]="!selectedVocnjak" color="warn">Izbrisi vocnjak</button>
+        </div>
+        <table mat-table [dataSource]="selectedParcela!.vocnjaci" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let vocnjak"> {{vocnjak.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="tip">
+                <th mat-header-cell *matHeaderCellDef> Tip </th>
+                <td mat-cell *matCellDef="let vocnjak"> {{vocnjak.tip}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplayVocnjak"></tr>
+            <tr
+                mat-row
+                (click)="rowClickVocnjak(row)"
+                *matRowDef="let row; columns: columnsToDisplayVocnjak"
+            ></tr>
+        </table>
+    </div>
+
+    <div *ngIf="selectedVocnjak && !editing" class="poljoprivredno-dobro" [style.grid-area]="'poljoprivredno-dobro'">
+        <h3>Poljoprivredno dobro</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>{{selectedVocnjak.poljoprivrednoDobro.id}}</td>
+            </tr>
+            <tr>
+                <td>Datum sadnice</td>
+                <td>{{formatDate(selectedVocnjak.poljoprivrednoDobro.datumSadnice)}}</td>
+            </tr>
+            <tr>
+                <td>Naziv</td>
+                <td>{{selectedVocnjak.poljoprivrednoDobro.naziv}}</td>
+            </tr>
+            <tr>
+                <td>Sorta</td>
+                <td>{{selectedVocnjak.poljoprivrednoDobro.sorta}}</td>
+            </tr>
+            <tr>
+                <td>Zivotni vek</td>
+                <td>{{selectedVocnjak.poljoprivrednoDobro.zivotniVek}}</td>
+            </tr>
+            <tr>
+                <td>Vreme sazrevanja</td>
+                <td>{{selectedVocnjak.poljoprivrednoDobro.vremeSazrevanja}}</td>
+            </tr>
+            <tr>
+                <td>Minimalni potencijal davanja</td>
+                <td>{{selectedVocnjak.poljoprivrednoDobro.minimalniPotencijalDavanja}}</td>
+            </tr>
+            <tr>
+                <td>Maksimalni potencijal davanja</td>
+                <td>{{selectedVocnjak.poljoprivrednoDobro.maksimalniPotencijalDavanja}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf="selectedVocnjak && editing" class="poljoprivredno-dobro" [style.grid-area]="'poljoprivredno-dobro'">
+        <h3>Poljoprivredno dobro</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>{{selectedVocnjak.poljoprivrednoDobro.id}}</td>
+            </tr>
+            <tr>
+                <td>Datum sadnice</td>
+                <!-- <td>{{formatDate(selectedVocnjak.poljoprivrednoDobro.datumSadnice)}}</td> -->
+                <td>
+                    <input type="date" [value]="selectedVocnjak.poljoprivrednoDobro.datumSadnice">
+                </td>
+            </tr>
+            <tr>
+                <td>Naziv</td>
+                <td>
+                    <input type="text" [value]="selectedVocnjak.poljoprivrednoDobro.naziv">
+                </td>
+            </tr>
+            <tr>
+                <td>Sorta</td>
+                <td>
+                    <input type="text" [value]="selectedVocnjak.poljoprivrednoDobro.sorta">
+                </td>
+            </tr>
+            <tr>
+                <td>Zivotni vek</td>
+                <td>
+                    <input type="number" [value]="selectedVocnjak.poljoprivrednoDobro.zivotniVek">
+                </td>
+            </tr>
+            <tr>
+                <td>Vreme sazrevanja</td>
+                <td>
+                    <input type="number" [value]="selectedVocnjak.poljoprivrednoDobro.vremeSazrevanja">
+                </td>
+            </tr>
+            <tr>
+                <td>Minimalni potencijal davanja</td>
+                <td>
+                    <input type="number" [value]="selectedVocnjak.poljoprivrednoDobro.minimalniPotencijalDavanja">
+                </td>
+            </tr>
+            <tr>
+                <td>Maksimalni potencijal davanja</td>
+                <td>
+                    <input type="number" [value]="selectedVocnjak.poljoprivrednoDobro.maksimalniPotencijalDavanja">
+                </td>
+            </tr>
+        </table>
+        <div class="action-buttons">
+            <button mat-flat-button (click)="odbaci()">Odbaci</button>
+            <button mat-flat-button color="primary">Sacuvaj</button>
+        </div>
+    </div>
+
+    <div *ngIf="addingParcela" class="poljoprivredno-dobro" [style.grid-area]="'poljoprivredno-dobro'">
+        <h3>Dodaj novu parcelu</h3>
+        <table>
+            <tr>
+                <td>Povrsina</td>
+                <td>
+                    <input type="number" [(ngModel)]="povrsina">
+                </td>
+            </tr>
+            <tr>
+                <td>Broj Parcele</td>
+                <td>
+                    <input type="number" [(ngModel)]="brojParcele">
+                </td>
+            </tr>
+        </table>
+        <div class="action-buttons">
+            <button mat-flat-button (click)="odbaciParcelu()">Odbaci</button>
+            <button mat-flat-button color="primary" (click)="createParcela()">Dodaj</button>
+        </div>
+    </div>
+
+    <div *ngIf="addingVocnjak" class="poljoprivredno-dobro" [style.grid-area]="'poljoprivredno-dobro'">
+        <h3>Dodaj novi vocnjak</h3>
+        <table>
+            <tr>
+                <td>Tip</td>
+                <td>
+                    <select [(ngModel)]="tipVocnjaka">
+                        <option value="plastenik">Plastenik</option>
+                        <option value="vrt">Vrt</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div class="action-buttons">
+            <button mat-flat-button (click)="odbaciVocnjak()">Odbaci</button>
+            <button mat-flat-button color="primary" (click)="dodajVocnjakServer()">Dodaj</button>
+        </div>
+    </div>
+</div>

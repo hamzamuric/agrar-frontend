@@ -1,0 +1,29 @@
+.zahtevi-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: space-evenly;
+    max-width: 800px;
+    margin: auto;
+}
+
+.zahtev {
+    padding: 20px;
+    background-color: aliceblue;
+    border-radius: 12px;
+}
+
+span {
+    font-weight: bold;
+}
+
+.zelena {
+    background-color: limegreen;
+}
+
+.crvena {
+    background-color: darkred;
+    color: white;
+}

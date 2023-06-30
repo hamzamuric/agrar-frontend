@@ -1,0 +1,14 @@
+<div class="zahtevi-container">
+    <div *ngFor="let zahtev of zahtevi" class="zahtev" [class.zelena]="zahtev.ispravna" [class.crvena]="!zahtev.ispravna">
+        Korisnik: <span>{{zahtev.korisnik.ime}}</span>
+        <br>
+        pesticidi:
+        <ul>
+            <li *ngFor="let p of zahtev.pesticidi">{{p.naziv}}</li>
+        </ul>
+        <div>
+            <button mat-raised-button>Odbij</button>
+            <button mat-raised-button>Odobri</button>
+        </div>
+    </div>
+</div>
